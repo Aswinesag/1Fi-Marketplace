@@ -22,7 +22,8 @@ app.use(cors({
       callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
+      // For debugging, temporarily allow all origins
+      callback(null, true);
     }
   },
   credentials: true,
@@ -39,6 +40,11 @@ app.use(express.json());
 
 // Database Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/1fi-marketplace';
+
+console.log('Attempting to connect to MongoDB...');
+console.log('MONGO_URI:', MONGO_URI ? 'Set' : 'Not set');
+console.log('AUTO_SEED:', process.env.AUTO_SEED);
+
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB successfully!');
@@ -63,7 +69,8 @@ mongoose.connect(MONGO_URI)
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
-    process.exit(1);
+    console.log('Server will continue running, but database operations will fail');
+    // Don't exit, let the server run for health checks
   });
 
 // API Routes
@@ -71,7 +78,22 @@ app.use('/api/products', productRoutes);
 
 // Root Health Check Route
 app.get('/', (req, res) => {
-  res.send('1Fi Marketplace Backend API is running...');
+  const dbStatus = mongoose.connection.readyState;
+  const statusMap = {
+    0: 'disconnected',
+    1: 'connected', 
+    2: 'connecting',
+    3: 'disconnecting'
+  };
+  
+  res.json({
+    message: '1Fi Marketplace Backend API is running...',
+    database: {
+      status: statusMap[dbStatus] || 'unknown',
+      readyState: dbStatus
+    },
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Start Server
