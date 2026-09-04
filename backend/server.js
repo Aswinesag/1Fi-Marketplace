@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:5173', 'http://localhost:3000', 'https://onefi-marketplace-euon.onrender.com', 'https://1-fi-marketplace-livid.vercel.app'];
+  : ['http://localhost:5173', 'http://localhost:3000', 'https://onefi-marketplace-1.onrender.com', 'https://1-fi-marketplace-livid.vercel.app'];
 
 app.use(cors({
   origin: function(origin, callback) {
