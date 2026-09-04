@@ -59,6 +59,42 @@ const products = [
       { monthlyAmount: 8333, tenureMonths: 12, interestRate: 0, cashback: 6000 },
       { monthlyAmount: 3100, tenureMonths: 36, interestRate: 10.0, cashback: 6000 }
     ]
+  },
+  {
+    name: "OnePlus 13 Pro",
+    slug: "oneplus-13-pro",
+    tag: "NEW",
+    mrp: 74999,
+    price: 69999,
+    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80",
+    variants: [
+      { storage: "256GB", priceOffset: 0, finishes: ["black", "green"] },
+      { storage: "512GB", priceOffset: 6000, finishes: ["black", "green"] }
+    ],
+    emiPlans: [
+      { monthlyAmount: 23333, tenureMonths: 3, interestRate: 0, cashback: 4000 },
+      { monthlyAmount: 11666, tenureMonths: 6, interestRate: 0, cashback: 4000 },
+      { monthlyAmount: 5833, tenureMonths: 12, interestRate: 0, cashback: 4000 },
+      { monthlyAmount: 2250, tenureMonths: 36, interestRate: 10.0, cashback: 4000 }
+    ]
+  },
+  {
+    name: "Xiaomi 14 Ultra",
+    slug: "xiaomi-14-ultra",
+    tag: "SPECIAL",
+    mrp: 104999,
+    price: 94999,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+    variants: [
+      { storage: "512GB", priceOffset: 0, finishes: ["black", "white"] },
+      { storage: "1TB", priceOffset: 12000, finishes: ["black", "titanium"] }
+    ],
+    emiPlans: [
+      { monthlyAmount: 31666, tenureMonths: 3, interestRate: 0, cashback: 5000 },
+      { monthlyAmount: 15833, tenureMonths: 6, interestRate: 0, cashback: 5000 },
+      { monthlyAmount: 7916, tenureMonths: 12, interestRate: 0, cashback: 5000 },
+      { monthlyAmount: 3050, tenureMonths: 36, interestRate: 10.5, cashback: 5000 }
+    ]
   }
 ];
 
