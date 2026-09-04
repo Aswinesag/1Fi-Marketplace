@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed/seedData.js",
+    "seed-deploy": "node scripts/deploy-seed.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
