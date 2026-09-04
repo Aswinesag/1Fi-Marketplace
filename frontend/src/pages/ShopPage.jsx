@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Search, ArrowRight } from 'lucide-react';
+import { API_URL } from '../config/api';
 
 export default function ShopPage() {
   const [activeTab, setActiveTab] = useState('marketplace');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  const API_URL = 'https://onefi-marketplace-euon.onrender.com';
 
   useEffect(() => {
     fetch(`${API_URL}/api/products`)

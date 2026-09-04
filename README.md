@@ -79,6 +79,7 @@ node seed/seedData.js
 
 # Start the Express server
 node server.js
+```
 
 ### 2. Setup and Run Frontend
 Open a separate terminal window for the frontend:
@@ -91,8 +92,42 @@ cd frontend
 npm install lucide-react react-router-dom
 npm install -D tailwindcss postcss autoprefixer
 
+# Create a .env file in the frontend folder with:
+# VITE_API_URL=http://localhost:5000 (for local development)
+# or VITE_API_URL=https://onefi-marketplace-euon.onrender.com (for production)
+
 # Start the Vite development server
 npm run dev
 ```
 
 Open your browser and navigate to the local URL provided by Vite (typically http://localhost:5173) to view and interact with the application.
+
+## 🚀 Deployment Instructions
+
+### Backend Deployment (Render)
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Configure build and start commands:
+   - Build Command: `npm install`
+   - Start Command: `node server.js`
+4. Add environment variables:
+   - `PORT`: `5000`
+   - `MONGO_URI`: Your MongoDB Atlas connection string
+5. Deploy and note the generated URL
+
+### Frontend Deployment (Vercel)
+1. Create a new project on Vercel
+2. Connect your GitHub repository
+3. Configure build settings:
+   - Framework Preset: Vite
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+4. Add environment variable:
+   - `VITE_API_URL`: Your deployed backend URL (e.g., `https://onefi-marketplace-euon.onrender.com`)
+5. Deploy
+
+### Troubleshooting Common Issues
+- **CORS Errors**: Ensure your backend CORS configuration includes your frontend domain
+- **MongoDB Connection**: Verify your MongoDB Atlas IP whitelist allows Render/Vercel IPs
+- **Environment Variables**: Double-check that all required environment variables are set in production
+- **API Timeout**: Check if your backend is responding properly using curl or Postman

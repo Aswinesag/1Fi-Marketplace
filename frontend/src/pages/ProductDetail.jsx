@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, Zap } from 'lucide-react';
+import { API_URL } from '../config/api';
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -10,8 +11,6 @@ export default function ProductDetail() {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedFinish, setSelectedFinish] = useState('');
   const [selectedEmiPlan, setSelectedEmiPlan] = useState(null);
-
-  const API_URL = 'https://onefi-marketplace-euon.onrender.com';
 
   useEffect(() => {
     fetch(`${API_URL}/api/products/${slug}`)
