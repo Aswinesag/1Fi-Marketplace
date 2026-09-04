@@ -11,8 +11,10 @@ export default function ProductDetail() {
   const [selectedFinish, setSelectedFinish] = useState('');
   const [selectedEmiPlan, setSelectedEmiPlan] = useState(null);
 
+  const API_URL = 'https://onefi-marketplace-euon.onrender.com';
+
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${slug}`)
+    fetch(`${API_URL}/api/products/${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
