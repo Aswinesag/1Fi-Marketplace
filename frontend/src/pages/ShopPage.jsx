@@ -8,8 +8,10 @@ export default function ShopPage() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const API_URL = 'https://onefi-marketplace-euon.onrender.com';
+
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch(`${API_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
