@@ -111,4 +111,10 @@ const seedDB = async () => {
   }
 };
 
-seedDB();
+// Export products for use in other files
+module.exports = { products, seedDB };
+
+// Only run seedDB if this file is executed directly
+if (require.main === module) {
+  seedDB();
+}

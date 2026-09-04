@@ -40,7 +40,27 @@ app.use(express.json());
 // Database Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/1fi-marketplace';
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB successfully!'))
+  .then(() => {
+    console.log('Connected to MongoDB successfully!');
+    
+    // Auto-seed database if in production and empty
+    if (process.env.AUTO_SEED === 'true') {
+      const Product = require('./models/Product');
+      Product.countDocuments().then(count => {
+        if (count === 0) {
+          console.log('Database is empty. Seeding initial data...');
+          const products = require('./seed/seedData').products;
+          if (products && products.length > 0) {
+            Product.insertMany(products)
+              .then(() => console.log('Database seeded successfully!'))
+              .catch(err => console.error('Error seeding database:', err));
+          }
+        } else {
+          console.log(`Database already has ${count} products. Skipping seed.`);
+        }
+      }).catch(err => console.error('Error checking database:', err));
+    }
+  })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
     process.exit(1);
